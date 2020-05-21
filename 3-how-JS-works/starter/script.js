@@ -1,20 +1,28 @@
 ///////////////////////////////////////
 // Lecture: Hoisting
+//function
+calculateAge(1965)
+function calculateAge(year) {
+    console.log(2016 - year)
+}
+
+// retirement(1990)
+
+var retirement = function(year) {
+    console.log(65-(2016-year))
+}
+
+//variables
+console.log(age);
+var age = 23; 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+function foo() {
+    var age = 65;
+    console.log(age)
+}
+foo();
+console.log(age)
 
 
 ///////////////////////////////////////
@@ -23,7 +31,7 @@
 
 // First scoping example
 
-/*
+
 var a = 'Hello!';
 first();
 
@@ -36,13 +44,13 @@ function first() {
         console.log(a + b + c);
     }
 }
-*/
+
 
 
 
 // Example to show the differece between execution stack and scope chain
 
-/*
+
 var a = 'Hello!';
 first();
 
@@ -58,16 +66,16 @@ function first() {
 
 function third() {
     var d = 'John';
-    console.log(a + b + c + d);
+    console.log(a +  d);
 }
-*/
+
 
 
 
 ///////////////////////////////////////
 // Lecture: The this keyword
 
-
+console.log(this)
 
 
 
