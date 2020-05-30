@@ -202,13 +202,11 @@ game()
 //   };
 // }
 
-
 // var teacherQuestion = interviewQuestion('teacher');
 // var designerQuestion = interviewQuestion('designer');
 
 // teacherQuestion('John')
 // designerQuestion('jane')
-
 
 /////////////////// Lecture: Bind, call and apply
 
@@ -243,12 +241,6 @@ game()
 // var emilyFormal = john.presentation.bind(emily, 'formal')
 // emilyFormal('afternoon')
 
-
-
-
-
-
-
 // var years = [1990, 1965, 1937, 2005, 1998];
 
 // const arrayCalc = (arr, fn) => {
@@ -262,7 +254,6 @@ game()
 // function calculateAge(limit) {
 //     return 2016 - limit
 // };
-
 
 // function isFullAge(limit, el) {
 //     return el >= limit
@@ -291,10 +282,87 @@ c) correct answer (I would use a number for this)
 
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 */
+/*
+--- Expert level ---
 
+8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
 
+9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
 
-  
+10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
 
+11. Display the score in the console. Use yet another method for this.
+*/
 
+class Question {
+  constructor(question, answer, CreAnswer) {
+    this.question = question;
+    this.answer = answer;
+    this.CreAnswer = CreAnswer;
+  }
+}
 
+const displayQuestion = (el) => {
+  console.log(el.question);
+  for (let i = 0; i < el.answer.length; i++) {
+    console.log(`${i}: ${el.answer[i]}`);
+  }
+  console.log(`This is your current score: ${score}`)
+};
+
+let score = 0;
+const adding = () => {
+  return (score = score + 1);
+};
+
+const checkAnswer = () => {
+  let promptAnswer = prompt(`Please select the correct answer`);
+  promptAnswer;
+
+  if (Number(promptAnswer) === randomQuestion.CreAnswer) {
+    console.log("Correct answer!");
+    radQuestion();
+    adding()
+    displayQuestion(randomQuestion);
+    checkAnswer();
+  } else if (promptAnswer === "exit") {
+    console.log(promptAnswer);
+    console.log(`Congrats this is your final score: ${score}`)
+  } else {
+    console.log("Wrong answer. Try again :)");
+    radQuestion();
+    displayQuestion(randomQuestion);
+    checkAnswer();
+  }
+};
+
+const q1 = new Question(
+  "Who will be the number 1 programmer ever?",
+  ["John", "Melvin", "Karl"],
+  1
+);
+
+const q2 = new Question(
+  "Who will get a job very soon?",
+  ["John", "Karl", "Melvin"],
+  2
+);
+
+const q3 = new Question(
+  "Who will be the number 1 family Dad?",
+  ["Melvin", "John", "Karl"],
+  0
+);
+
+const questions = [q1, q2, q3];
+
+let randomQuestion;
+const radQuestion = () => {
+  return (randomQuestion = questions[Math.floor(Math.random() * 3)]);
+};
+radQuestion();
+
+displayQuestion(randomQuestion);
+checkAnswer();
+
+// console.log(answer)
